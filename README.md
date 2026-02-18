@@ -77,3 +77,46 @@ docker run -dt -e DISCORD_TOKEN=$DISCORD_TOKEN discord-bot
 ```
 
 Refer to [this documentation](https://docs.docker.com/guides/) for more information on using Docker for managing containerized applications.
+
+## AI-Assisted Development
+
+This project is optimized for AI-assisted development using **OpenCode** with the **oh-my-opencode** extension. The project includes custom skills and agent configuration to accelerate Discord bot development.
+
+### Quick Start with AI Agents
+
+1. Install OpenCode with oh-my-opencode extension
+2. Open this project in your editor
+3. Ask the AI to help with tasks like:
+   - "Create a /poll command with button voting"
+   - "Add a reminder system using the discord-features skill"
+   - "Create an owner-only precondition"
+
+### Available Skills
+
+| Skill              | Purpose                                                            |
+| ------------------ | ------------------------------------------------------------------ |
+| `sapphire-expert`  | Sapphire framework patterns, commands, listeners, preconditions    |
+| `discord-features` | Common features: polls, reminders, games, tickets, role management |
+
+### Documentation for AI Agents
+
+See [AGENTS.md](./AGENTS.md) for comprehensive AI agent configuration including:
+
+- Context7 library IDs for documentation lookup
+- MCP server configurations
+- Project conventions and patterns
+- Feedback mechanisms for improving agent performance
+
+### Providing Feedback
+
+When agents produce suboptimal output, provide feedback to improve future results:
+
+```
+"The command should follow our naming convention: lowercase-with-dashes"
+```
+
+This helps harden the skills and improves future suggestions. See [AGENTS.md](./AGENTS.md#agent-feedback--improvement) for detailed feedback guidance.
+
+## External Resources
+
+Documentation for SapphireJS is copied locally to the workspace and is located inside the external-references/ folder. The welcome/entry page for the documentation is located at [./external-references/sapphirejs-docs-markdown/sapphirejs.dev_docs_General_Welcome.md](external-references/sapphirejs-docs-markdown/sapphirejs.dev_docs_General_Welcome.md)

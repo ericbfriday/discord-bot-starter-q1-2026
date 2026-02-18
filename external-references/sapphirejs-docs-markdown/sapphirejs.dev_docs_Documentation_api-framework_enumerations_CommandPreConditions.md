@@ -1,0 +1,33 @@
+[Skip to main content](https://sapphirejs.dev/docs/Documentation/api-framework/enumerations/CommandPreConditions/#__docusaurus_skipToContent_fallback)
+
+On this page
+
+Defined in: [projects/framework/src/lib/types/Enums.ts:85](https://github.com/sapphiredev/framework/blob/bba782cede16e50e698faee17c3db41b9daba537/src/lib/types/Enums.ts#L85)
+
+The available command pre-conditions.
+
+## Since [​](https://sapphirejs.dev/docs/Documentation/api-framework/enumerations/CommandPreConditions/#since "Direct link to Since")
+
+2.0.0
+
+## Enumeration Members [​](https://sapphirejs.dev/docs/Documentation/api-framework/enumerations/CommandPreConditions/#enumeration-members "Direct link to Enumeration Members")
+
+| Enumeration Member       | Value                      | Description                                                                                                                           | Defined in                                                                                                                                                          |
+| ------------------------ | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ClientPermissions`      | `"ClientPermissions"`      | -                                                                                                                                     | [projects/framework/src/lib/types/Enums.ts:107](https://github.com/sapphiredev/framework/blob/bba782cede16e50e698faee17c3db41b9daba537/src/lib/types/Enums.ts#L107) |
+| `Cooldown`               | `"Cooldown"`               | -                                                                                                                                     | [projects/framework/src/lib/types/Enums.ts:86](https://github.com/sapphiredev/framework/blob/bba782cede16e50e698faee17c3db41b9daba537/src/lib/types/Enums.ts#L86)   |
+| `DirectMessageOnly`      | `"DMOnly"`                 | **Deprecated** Use [RunIn](https://sapphirejs.dev/docs/Documentation/api-framework/enumerations/CommandPreConditions/#runin) instead. | [projects/framework/src/lib/types/Enums.ts:88](https://github.com/sapphiredev/framework/blob/bba782cede16e50e698faee17c3db41b9daba537/src/lib/types/Enums.ts#L88)   |
+| `GuildNewsOnly`          | `"GuildNewsOnly"`          | **Deprecated** Use [RunIn](https://sapphirejs.dev/docs/Documentation/api-framework/enumerations/CommandPreConditions/#runin) instead. | [projects/framework/src/lib/types/Enums.ts:91](https://github.com/sapphiredev/framework/blob/bba782cede16e50e698faee17c3db41b9daba537/src/lib/types/Enums.ts#L91)   |
+| `GuildNewsThreadOnly`    | `"GuildNewsThreadOnly"`    | **Deprecated** Use [RunIn](https://sapphirejs.dev/docs/Documentation/api-framework/enumerations/CommandPreConditions/#runin) instead. | [projects/framework/src/lib/types/Enums.ts:93](https://github.com/sapphiredev/framework/blob/bba782cede16e50e698faee17c3db41b9daba537/src/lib/types/Enums.ts#L93)   |
+| `GuildOnly`              | `"GuildOnly"`              | **Deprecated** Use [RunIn](https://sapphirejs.dev/docs/Documentation/api-framework/enumerations/CommandPreConditions/#runin) instead. | [projects/framework/src/lib/types/Enums.ts:95](https://github.com/sapphiredev/framework/blob/bba782cede16e50e698faee17c3db41b9daba537/src/lib/types/Enums.ts#L95)   |
+| `GuildPrivateThreadOnly` | `"GuildPrivateThreadOnly"` | **Deprecated** Use [RunIn](https://sapphirejs.dev/docs/Documentation/api-framework/enumerations/CommandPreConditions/#runin) instead. | [projects/framework/src/lib/types/Enums.ts:97](https://github.com/sapphiredev/framework/blob/bba782cede16e50e698faee17c3db41b9daba537/src/lib/types/Enums.ts#L97)   |
+| `GuildPublicThreadOnly`  | `"GuildPublicThreadOnly"`  | **Deprecated** Use [RunIn](https://sapphirejs.dev/docs/Documentation/api-framework/enumerations/CommandPreConditions/#runin) instead. | [projects/framework/src/lib/types/Enums.ts:99](https://github.com/sapphiredev/framework/blob/bba782cede16e50e698faee17c3db41b9daba537/src/lib/types/Enums.ts#L99)   |
+| `GuildTextOnly`          | `"GuildTextOnly"`          | **Deprecated** Use [RunIn](https://sapphirejs.dev/docs/Documentation/api-framework/enumerations/CommandPreConditions/#runin) instead. | [projects/framework/src/lib/types/Enums.ts:101](https://github.com/sapphiredev/framework/blob/bba782cede16e50e698faee17c3db41b9daba537/src/lib/types/Enums.ts#L101) |
+| `GuildThreadOnly`        | `"GuildThreadOnly"`        | **Deprecated** Use [RunIn](https://sapphirejs.dev/docs/Documentation/api-framework/enumerations/CommandPreConditions/#runin) instead. | [projects/framework/src/lib/types/Enums.ts:105](https://github.com/sapphiredev/framework/blob/bba782cede16e50e698faee17c3db41b9daba537/src/lib/types/Enums.ts#L105) |
+| `GuildVoiceOnly`         | `"GuildVoiceOnly"`         | **Deprecated** Use [RunIn](https://sapphirejs.dev/docs/Documentation/api-framework/enumerations/CommandPreConditions/#runin) instead. | [projects/framework/src/lib/types/Enums.ts:103](https://github.com/sapphiredev/framework/blob/bba782cede16e50e698faee17c3db41b9daba537/src/lib/types/Enums.ts#L103) |
+| `NotSafeForWork`         | `"NSFW"`                   | -                                                                                                                                     | [projects/framework/src/lib/types/Enums.ts:106](https://github.com/sapphiredev/framework/blob/bba782cede16e50e698faee17c3db41b9daba537/src/lib/types/Enums.ts#L106) |
+| `RunIn`                  | `"RunIn"`                  | -                                                                                                                                     | [projects/framework/src/lib/types/Enums.ts:89](https://github.com/sapphiredev/framework/blob/bba782cede16e50e698faee17c3db41b9daba537/src/lib/types/Enums.ts#L89)   |
+| `UserPermissions`        | `"UserPermissions"`        | -                                                                                                                                     | [projects/framework/src/lib/types/Enums.ts:108](https://github.com/sapphiredev/framework/blob/bba782cede16e50e698faee17c3db41b9daba537/src/lib/types/Enums.ts#L108) |
+
+- [Since](https://sapphirejs.dev/docs/Documentation/api-framework/enumerations/CommandPreConditions/#since)
+- [Enumeration Members](https://sapphirejs.dev/docs/Documentation/api-framework/enumerations/CommandPreConditions/#enumeration-members)

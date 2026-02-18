@@ -3,5 +3,6 @@
 !.git*
 !.npmrc
 !.prettier*
+!.omo/
 
 node_modules/
