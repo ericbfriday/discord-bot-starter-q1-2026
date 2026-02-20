@@ -4,5 +4,19 @@
 !.npmrc
 !.prettier*
 !.omo/
+!.claude/
 
 node_modules/
+
+# Goosetown working directories (local, not shared)
+GUIDES/
+PLANS/
+RESEARCH/
+WORK_LOGS/
+UTILITIES/
+REPOS/
+.scratch/
+.beads/
+.beads-ui/
+/CATALOG.md
+/TAGS.md

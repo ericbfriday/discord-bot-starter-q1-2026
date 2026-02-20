@@ -3,7 +3,7 @@ import { defineConfig } from "eslint/config";
 import tseslint from "typescript-eslint";
 
 export default defineConfig(
-  { ignores: ["ui/"] },
+  { ignores: ["ui/", "workers/"] },
   eslint.configs.recommended,
   tseslint.configs.strictTypeChecked,
   tseslint.configs.stylisticTypeChecked,
