@@ -8,6 +8,7 @@ export interface Env {
   OPENROUTER_API_KEY: string;
   WORKER_AUTH_SECRET: string; // Shared secret between bot and worker
   CF_ACCOUNT_ID: string;
+  CF_AIG_TOKEN: string; // Cloudflare AI Gateway authentication token
 
   // Vars (set in wrangler.jsonc)
   CF_GATEWAY_ID: string;

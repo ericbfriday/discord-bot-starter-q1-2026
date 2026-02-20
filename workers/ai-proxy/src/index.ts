@@ -114,6 +114,7 @@ export default {
         method: "POST",
         headers: {
           Authorization: `Bearer ${env.OPENROUTER_API_KEY}`,
+          "cf-aig-authorization": `Bearer ${env.CF_AIG_TOKEN}`,
           "Content-Type": "application/json",
           "cf-aig-cache-ttl": body.type === "image" ? "0" : "300",
           "HTTP-Referer": "https://github.com/discord-bot-starter",
