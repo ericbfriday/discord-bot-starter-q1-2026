@@ -122,14 +122,36 @@ created: 2026-02-11
 
 Available at `database/schema.sql`: guild_config, reminders, polls, self_assign_roles, tickets, warnings, user_points, scheduled_tasks, webhooks.
 
-### Quality Commands
+### Commands
 
 ```bash
-pnpm install           # Install dependencies
-pnpm start             # Run bot (requires DISCORD_TOKEN env var)
-pnpm tsc               # Type check
-pnpm eslint            # Lint
-pnpm prettier --check . # Format check
+# Bot (root)
+pnpm install              # Install dependencies
+pnpm start                # Run bot (requires DISCORD_TOKEN env var)
+pnpm tsc                  # Type check (noEmit — no output files)
+pnpm eslint               # Lint (workers/ excluded from eslint config)
+pnpm eslint --fix         # Lint and auto-fix
+pnpm prettier --check .   # Format check
+pnpm prettier --write .   # Format and auto-fix
+
+# AI Proxy Worker (workers/ai-proxy/)
+cd workers/ai-proxy
+pnpm install              # Install worker dependencies
+pnpm dev                  # Local dev server (wrangler dev)
+pnpm deploy               # Deploy to Cloudflare production
+
+# Worker secrets (set once via wrangler)
+npx wrangler secret put OPENROUTER_API_KEY
+npx wrangler secret put WORKER_AUTH_SECRET
+npx wrangler secret put CF_ACCOUNT_ID
+npx wrangler secret put CF_AIG_TOKEN
+
+# Docker
+docker build -t discord-bot .
+docker run -dt -e DISCORD_TOKEN=$DISCORD_TOKEN discord-bot
+
+# Quality gates (run before committing)
+pnpm tsc && pnpm eslint
 ```
 
 ## Guidelines

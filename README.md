@@ -14,69 +14,104 @@ This template provides a basic Discord bot project containing a sample bot appli
 - Fixes formatting and linting during pre-commit hooks using [Lefthook](https://lefthook.dev/).
 - Preconfigured workflows for [Dependabot](https://docs.github.com/en/code-security/dependabot) and [GitHub Actions](https://github.com/features/actions).
 
-## Usage
-
-This guide explains how to use this template to start a new Discord bot project, from creation to deployment.
-
-### Create a New Project
-
-Follow [this link](https://github.com/new?template_name=discord-bot-starter&template_owner=threeal) to create a new project based on this template. For more information about creating a repository from a template on GitHub, refer to [this documentation](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
-
-Alternatively, you can clone this repository locally to begin using this template.
-
-### Choose a License
-
-By default, this template is [unlicensed](https://unlicense.org/). Before modifying this template, replace the [`LICENSE`](./LICENSE) file with the license to be used by the new project. For more information about licensing a repository, refer to [this documentation](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository).
-
-Alternatively, you can remove the `LICENSE` file or leave it as-is to keep the new project unlicensed.
-
-### Update the Readme File
-
-Update the content of this [`README.md`](./README.md) file with a description of the new project. For more information on adding READMEs to a project, refer to [this documentation](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes).
-
-### Set Up the Tools
-
-This template uses [pnpm](https://pnpm.io/) as the package manager. If pnpm is not installed, follow [this guide](https://pnpm.io/installation) to install it. Then, install the project dependencies with:
+## Quick Start
 
 ```sh
-pnpm install
+pnpm install                # Install dependencies
+cp .env.example .env        # Configure environment variables (see below)
+pnpm start                  # Run the bot
 ```
 
-For more information on pnpm, including adding dependencies or running tools, refer to [this documentation](https://pnpm.io/pnpm-cli).
+## Commands Reference
 
-### Set Up the Bot Application
+### Bot (Root)
 
-Before developing the bot application, ensure that you have set up a bot application and obtained a token to be used to access the bot. If not, refer to [this documentation](https://discord.com/developers/docs/quick-start/getting-started) for setting up a new bot application and getting the access token.
+| Command | Description |
+|---|---|
+| `pnpm install` | Install all dependencies |
+| `pnpm start` | Run the bot via [jiti](https://github.com/nicolo-ribaudo/jiti) (TypeScript, no build step) |
+| `pnpm tsc` | Type-check (`noEmit` — no output files) |
+| `pnpm eslint` | Lint (workers/ excluded) |
+| `pnpm eslint --fix` | Lint and auto-fix |
+| `pnpm prettier --check .` | Check formatting |
+| `pnpm prettier --write .` | Format and auto-fix |
 
-After obtaining the access token, export it as a `DISCORD_TOKEN` variable in your shell environment.
+### AI Proxy Worker (`workers/ai-proxy/`)
 
-### Develop the Bot Application
-
-Develop the bot application by modifying the files under the [`src`](./src) directory according to the project requirements. For more detailed guidance on developing the bot application, refer to the [Sapphire documentation](https://sapphirejs.dev/docs/General/Welcome) and the [TypeScript documentation](https://www.typescriptlang.org/docs/).
-
-After you're done, run the bot application using the following command:
+The AI proxy is a [Cloudflare Worker](https://developers.cloudflare.com/workers/) that sits between the bot and [OpenRouter](https://openrouter.ai/) via [Cloudflare AI Gateway](https://developers.cloudflare.com/ai-gateway/). It handles authentication, per-user rate limiting, and response caching.
 
 ```sh
-pnpm start
+cd workers/ai-proxy
+pnpm install                # Install worker dependencies
+pnpm dev                    # Run locally via wrangler dev
+pnpm deploy                 # Deploy to Cloudflare production
 ```
 
-### Deploy the Bot Application
+**Worker secrets** (set once, stored encrypted by Cloudflare):
 
-The bot application can simply be deployed by running the `pnpm start` command on a specific machine. Alternatively, the bot application can also be deployed as a [Docker](https://www.docker.com/) container, allowing it to run as a service while keeping the application contained in an isolated environment.
+```sh
+cd workers/ai-proxy
+npx wrangler secret put OPENROUTER_API_KEY
+npx wrangler secret put WORKER_AUTH_SECRET
+npx wrangler secret put CF_ACCOUNT_ID
+npx wrangler secret put CF_AIG_TOKEN
+```
 
-To do this, first, build the bot application into a Docker image using the following command:
+### Docker
 
 ```sh
 docker build -t discord-bot .
-```
-
-Then run the Docker image as a service using the following command:
-
-```sh
 docker run -dt -e DISCORD_TOKEN=$DISCORD_TOKEN discord-bot
 ```
 
-Refer to [this documentation](https://docs.docker.com/guides/) for more information on using Docker for managing containerized applications.
+### Quality Gates
+
+Run before committing (also enforced by [Lefthook](https://lefthook.dev/) pre-commit hook):
+
+```sh
+pnpm tsc && pnpm eslint
+```
+
+The pre-commit hook runs `pnpm install → pnpm tsc → prettier --write → eslint --fix` in sequence. If auto-fixes produce file changes, the commit is rejected so you can re-stage and recommit.
+
+## Setup
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) v24+
+- [pnpm](https://pnpm.io/) v10+ (`corepack enable pnpm`)
+- A [Discord bot application](https://discord.com/developers/docs/quick-start/getting-started) with a token
+
+### Environment Variables
+
+Copy `.env.example` to `.env` and fill in:
+
+| Variable | Required | Description |
+|---|---|---|
+| `DISCORD_TOKEN` | Yes | Bot login token |
+| `AI_PROXY_URL` | For AI features | URL of the deployed CF Worker |
+| `AI_PROXY_SECRET` | For AI features | Shared secret between bot and worker |
+
+### Develop the Bot
+
+Modify files under [`src/`](./src). The project uses [Sapphire](https://sapphirejs.dev/) on [Discord.js](https://discord.js.org/) with TypeScript ESM (via jiti — no compile step needed).
+
+```sh
+pnpm start                  # Run with hot reload via jiti
+```
+
+### Deploy
+
+**Option 1 — Direct:** Run `pnpm start` on any machine with Node.js and the `DISCORD_TOKEN` env var set.
+
+**Option 2 — Docker:**
+
+```sh
+docker build -t discord-bot .
+docker run -dt -e DISCORD_TOKEN=$DISCORD_TOKEN discord-bot
+```
+
+**AI Proxy Worker:** Deploy separately via `cd workers/ai-proxy && pnpm deploy`. See [Worker secrets](#ai-proxy-worker-workersai-proxy) above for required secrets.
 
 ## AI-Assisted Development
 
