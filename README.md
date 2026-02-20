@@ -26,15 +26,15 @@ pnpm start                  # Run the bot
 
 ### Bot (Root)
 
-| Command | Description |
-|---|---|
-| `pnpm install` | Install all dependencies |
-| `pnpm start` | Run the bot via [jiti](https://github.com/nicolo-ribaudo/jiti) (TypeScript, no build step) |
-| `pnpm tsc` | Type-check (`noEmit` — no output files) |
-| `pnpm eslint` | Lint (workers/ excluded) |
-| `pnpm eslint --fix` | Lint and auto-fix |
-| `pnpm prettier --check .` | Check formatting |
-| `pnpm prettier --write .` | Format and auto-fix |
+| Command                   | Description                                                                                |
+| ------------------------- | ------------------------------------------------------------------------------------------ |
+| `pnpm install`            | Install all dependencies                                                                   |
+| `pnpm start`              | Run the bot via [jiti](https://github.com/nicolo-ribaudo/jiti) (TypeScript, no build step) |
+| `pnpm tsc`                | Type-check (`noEmit` — no output files)                                                    |
+| `pnpm eslint`             | Lint (workers/ excluded)                                                                   |
+| `pnpm eslint --fix`       | Lint and auto-fix                                                                          |
+| `pnpm prettier --check .` | Check formatting                                                                           |
+| `pnpm prettier --write .` | Format and auto-fix                                                                        |
 
 ### AI Proxy Worker (`workers/ai-proxy/`)
 
@@ -86,10 +86,10 @@ The pre-commit hook runs `pnpm install → pnpm tsc → prettier --write → esl
 
 Copy `.env.example` to `.env` and fill in:
 
-| Variable | Required | Description |
-|---|---|---|
-| `DISCORD_TOKEN` | Yes | Bot login token |
-| `AI_PROXY_URL` | For AI features | URL of the deployed CF Worker |
+| Variable          | Required        | Description                          |
+| ----------------- | --------------- | ------------------------------------ |
+| `DISCORD_TOKEN`   | Yes             | Bot login token                      |
+| `AI_PROXY_URL`    | For AI features | URL of the deployed CF Worker        |
 | `AI_PROXY_SECRET` | For AI features | Shared secret between bot and worker |
 
 ### Develop the Bot
